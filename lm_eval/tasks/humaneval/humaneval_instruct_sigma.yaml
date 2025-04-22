@@ -1,5 +1,5 @@
 include: humaneval.yaml
-task: humaneval_instruct
+task: humaneval_instruct_sigma
 doc_to_text: !function utils.doc_to_text_sigma
 fewshot_delimiter: ""
 target_delimiter: ""

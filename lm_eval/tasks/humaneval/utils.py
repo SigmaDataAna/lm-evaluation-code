@@ -38,3 +38,13 @@ def build_predictions_instruct(
         ]
         for resp, doc in zip(resps, docs)
     ]
+
+def doc_to_text_sigma(doc):
+    prompt_template = '''<|endoftext|><|system|>
+You are an AI assistant developed by Microsoft. You are helpful for user to handle daily tasks.<|end|>
+<|user|>
+{}<|end|>
+<|assistant|>
+'''
+    current_template = prompt_template.format(doc['prompt'])
+    return current_template

@@ -480,7 +480,6 @@ class Task(abc.ABC):
 
             instances.append(inst)
         
-        print(instances)
         # now flatten, this is to allow slicing to work with pickles
 
         sliced_instances = instances[:og_limit]

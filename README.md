@@ -3,9 +3,9 @@
 ## Updated by Tianyu
 Usage is the same as lm-eval
 
-When evaluating Instruct Megatron models in `humaneval`, please use the task `humaneval_instruct_sigma`
-When evaluating Instruct Megatron models in `livecodebench`, please use the task `livecodebench`
-When evaluating Instruct Megatron models in `mbpp`, TBD
+- When evaluating Instruct Megatron models in `humaneval`, please use the task `humaneval_instruct_sigma`
+- When evaluating Instruct Megatron models in `livecodebench`, please use the task `livecodebench`
+- When evaluating Instruct Megatron models in `mbpp`, TBD
 
 Refer to `test_ds.sh`
 

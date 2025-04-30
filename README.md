@@ -1,7 +1,5 @@
 # Language Model Evaluation Harness
 
-# Language Model Evaluation Harness
-
 ## Updated by Tianyu
 Usage is the same as lm-eval
 

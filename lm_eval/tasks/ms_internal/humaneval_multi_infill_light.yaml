@@ -1,7 +1,7 @@
 task: HumanEval-MultiLineInfillingLight
 dataset_path: json
 dataset_kwargs:
-  data_files: /home/pretraining/lm-evaluation-code/ms_internal/data/HumanEval-MultiLineInfillingLight.jsonl
+  data_files: ms_internal/data/HumanEval-MultiLineInfillingLight.jsonl
 unsafe_code: true
 output_type: generate_until
 test_split: train

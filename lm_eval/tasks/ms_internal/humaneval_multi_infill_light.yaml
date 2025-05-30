@@ -1,8 +1,10 @@
 task: HumanEval-MultiLineInfillingLight
-dataset_path: ms_internal/data/HumanEval-MultiLineInfillingLight.jsonl
+dataset_path: json
+dataset_kwargs:
+  data_files: /home/pretraining/lm-evaluation-code/ms_internal/data/HumanEval-MultiLineInfillingLight.jsonl
 unsafe_code: true
 output_type: generate_until
-test_split: test
+test_split: train
 doc_to_text: "{{prompt}}"
 doc_to_target: "{{test}}\ncheck({{entry_point}})"
 metric_list:
@@ -28,3 +30,5 @@ filter_list:
         filter_fn: !function utils.build_predictions
 metadata:
   version: 1.0
+
+# d = load_dataset(path='json',name='default', data_files='/home/pretraining/lm-evaluation-code/ms_internal/data/HumanEval-MultiLineInfillingLight.jsonl')

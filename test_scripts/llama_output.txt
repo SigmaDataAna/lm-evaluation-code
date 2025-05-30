@@ -1,0 +1,7 @@
+2025-05-30:08:04:05 INFO     [__main__:428] Passed `--trust_remote_code`, setting environment variable `HF_DATASETS_TRUST_REMOTE_CODE=true`
+2025-05-30:08:04:05 INFO     [__main__:440] Selected Tasks: ['humaneval']
+2025-05-30:08:04:05 INFO     [evaluator:185] Setting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+2025-05-30:08:04:05 INFO     [evaluator:223] Initializing hf model, with arguments: {'pretrained': '/mnt/hdd1/huggingfacecache/hf_cache_lizongyang/models--Qwen--Qwen3-0.6B/snapshots/6130ef31402718485ca4d80a6234f70d9a4cf362', 'trust_remote_code': True}
+2025-05-30:08:04:05 WARNING  [accelerate.utils.other:441] Detected kernel version 5.4.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+2025-05-30:08:04:05 INFO     [models.huggingface:137] Using device 'cuda'
+2025-05-30:08:04:06 INFO     [models.huggingface:382] Model parallel was set to False, max memory was not set, and device map was set to {'': 'cuda'}

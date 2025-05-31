@@ -30,7 +30,7 @@ accelerate launch -m lm_eval \
 
 accelerate launch -m lm_eval \
     --model hf \
-    --model_args pretrained=deepseek-ai/DeepSeek-V2-Litedtype="bfloat16",parallelize=True \
+    --model_args pretrained=deepseek-ai/DeepSeek-V2-Lite,dtype="bfloat16",parallelize=True \
     --task HumanEval-MultiLineInfillingLight \
     --batch_size 256 \
     --confirm_run_unsafe_code \

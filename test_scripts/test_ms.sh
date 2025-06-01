@@ -6,6 +6,6 @@ lm_eval --model hf \
     --task HumanEval-MultiLineInfillingLight \
     --batch_size 64 \
     --confirm_run_unsafe_code \
-    --trust_remote_code
-    # --log_samples \
-    # --output_path ../outputs
+    --trust_remote_code \
+    --log_samples \
+    --output_path ../tianyu_outputs

@@ -9,6 +9,7 @@ accelerate launch -m lm_eval \
     --batch_size 256 \
     --confirm_run_unsafe_code \
     --trust_remote_code \
+    -o "${HUGGINGFACE_CKPT_PATH_BASE}/eval/coderv2lite_eval_humaneval" \
     2>&1 | tee "${SAVE_PATH}/coderv2lite_eval_humaneval.txt"
 
 
@@ -19,6 +20,7 @@ accelerate launch -m lm_eval \
     --batch_size 256 \
     --confirm_run_unsafe_code \
     --trust_remote_code \
+    -o "${HUGGINGFACE_CKPT_PATH_BASE}/eval/coderv2lite_eval_mscode_multiline" \
     2>&1 | tee "${SAVE_PATH}/coderv2lite_eval_mscode_multiline.txt"
 
 # accelerate launch -m lm_eval \

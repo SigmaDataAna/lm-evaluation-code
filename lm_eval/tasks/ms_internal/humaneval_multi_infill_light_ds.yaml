@@ -1,5 +1,5 @@
 include: humaneval_multi_infill_light.yaml
 task: HumanEval-MultiLineInfillingLight-DS
-doc_to_text: "<|fim_begin|>{{prompt}}<|fim_hole|>{{suffix}}<|fim_end|>"
+doc_to_text: "<｜fim▁begin｜>{{prompt}}<｜fim▁hole｜>{{suffix}}<｜fim▁end｜>"
 metadata:
   version: 1.0

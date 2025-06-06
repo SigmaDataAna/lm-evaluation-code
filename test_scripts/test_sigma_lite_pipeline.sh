@@ -6,7 +6,7 @@ ckps=()
 current=220000
 incr_first=150
 incr_next=350
-count=5
+count=12
 
 for ((i=0; i<count; i++))
 do
@@ -31,9 +31,9 @@ do
         --batch_size 64 \
         --confirm_run_unsafe_code \
         --trust_remote_code \
-        -o "${HUGGINGFACE_CKPT_PATH_BASE}/eval/eval_humaneval_${ckp}" \
-        2>&1 | tee "${HUGGINGFACE_CKPT_PATH_BASE}/eval/eval_humaneval_${ckp}.txt"
-
+        --log_samples \
+        --output_path "${HUGGINGFACE_CKPT_PATH_BASE}/eval/eval_humaneval_${ckp}" 
+    
     accelerate launch -m lm_eval \
         --model hf \
         --model_args pretrained="${HUGGINGFACE_CKPT_PATH}",dtype="bfloat16",parallelize=True \
@@ -41,8 +41,8 @@ do
         --batch_size 32 \
         --confirm_run_unsafe_code \
         --trust_remote_code \
-        -o "${HUGGINGFACE_CKPT_PATH_BASE}/eval/eval_mbpp_${ckp}" \
-        2>&1 | tee "${HUGGINGFACE_CKPT_PATH_BASE}/eval/eval_mbpp_${ckp}.txt"
+        --log_samples \
+        --output_path "${HUGGINGFACE_CKPT_PATH_BASE}/eval/eval_mbpp_${ckp}" 
 
     accelerate launch -m lm_eval \
         --model hf \
@@ -51,6 +51,27 @@ do
         --batch_size 64 \
         --confirm_run_unsafe_code \
         --trust_remote_code \
-        -o "${HUGGINGFACE_CKPT_PATH_BASE}/eval/eval_msinternal_multiline_light_${ckp}" \
-        2>&1 | tee "${HUGGINGFACE_CKPT_PATH_BASE}/eval/eval_msinternal_multiline_light_${ckp}.txt"
+        --log_samples \
+        --output_path "${HUGGINGFACE_CKPT_PATH_BASE}/eval/eval_msinternal_multiline_light_${ckp}" 
+
+    accelerate launch -m lm_eval \
+        --model hf \
+        --model_args pretrained="${HUGGINGFACE_CKPT_PATH}",dtype="bfloat16",parallelize=True \
+        --task HumanEval-RandomSpanInfillingLight \
+        --batch_size 64 \
+        --confirm_run_unsafe_code \
+        --trust_remote_code \
+        --log_samples \
+        --output_path "${HUGGINGFACE_CKPT_PATH_BASE}/eval/eval_msinternal_randomspan_light_${ckp}"
+
+    accelerate launch -m lm_eval \
+        --model hf \
+        --model_args pretrained="${HUGGINGFACE_CKPT_PATH}",dtype="bfloat16",parallelize=True \
+        --task HumanEval-SingleLineInfilling \
+        --batch_size 64 \
+        --confirm_run_unsafe_code \
+        --trust_remote_code \
+        --log_samples \
+        --output_path "${HUGGINGFACE_CKPT_PATH_BASE}/eval/eval_msinternal_singleline_${ckp}"
+
 done

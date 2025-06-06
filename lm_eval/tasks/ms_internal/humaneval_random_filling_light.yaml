@@ -1,4 +1,4 @@
-task: HumanEval-MultiLineInfillingLight
+task: HumanEval-RandomSpanInfillingLight
 dataset_path: json
 dataset_kwargs:
   data_files: ms_internal/data/HumanEval-RandomSpanInfillingLight.jsonl

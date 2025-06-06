@@ -1,0 +1,5 @@
+include: humaneval_singleline.yaml
+task: HumanEval-SingleLineInfilling-DS
+doc_to_text: "<｜fim▁begin｜>{{prompt}}<｜fim▁hole｜>{{suffix}}<｜fim▁end｜>"
+metadata:
+  version: 1.0

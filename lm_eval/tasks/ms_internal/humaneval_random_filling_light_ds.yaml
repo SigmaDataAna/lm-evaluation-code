@@ -1,0 +1,5 @@
+include: humaneval_random_filling_light.yaml
+task: HumanEval-RandomSpanInfillingLight-DS
+doc_to_text: "<｜fim▁begin｜>{{prompt}}<｜fim▁hole｜>{{suffix}}<｜fim▁end｜>"
+metadata:
+  version: 1.0

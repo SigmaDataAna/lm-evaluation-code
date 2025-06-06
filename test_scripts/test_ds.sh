@@ -1,5 +1,6 @@
 
 export HF_ALLOW_CODE_EVAL=1
+mkdir -p ${SAVE_PATH}
 
 accelerate launch -m lm_eval \
     --model hf \

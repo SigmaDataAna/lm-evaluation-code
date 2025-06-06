@@ -3,9 +3,9 @@ export HF_ALLOW_CODE_EVAL=1
 mkdir -p "${HUGGINGFACE_CKPT_PATH_BASE}/eval"
 
 ckps=()
-current=221550
+current=222950
 incr_next=350
-count=8
+count=6
 
 for ((i=0; i<count; i++))
 do

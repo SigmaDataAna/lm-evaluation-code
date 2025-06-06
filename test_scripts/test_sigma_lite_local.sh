@@ -2,7 +2,7 @@
 export HF_ALLOW_CODE_EVAL=1
 mkdir -p "${HUGGINGFACE_CKPT_PATH}/eval"
 
-CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 lm_eval \
+accelerate launch -m lm_eval \
     --model hf \
     --model_args pretrained="${HUGGINGFACE_CKPT_PATH}",dtype="bfloat16",parallelize=True \
     --task humaneval \
@@ -12,7 +12,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 lm_eval \
     -o "${HUGGINGFACE_CKPT_PATH}/eval/eval_mscode_singleline.json" \
     2>&1 | tee "${HUGGINGFACE_CKPT_PATH}/eval/eval_mscode_singleline.txt"
 
-CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 lm_eval \
+accelerate launch -m lm_eval \
     --model hf \
     --model_args pretrained="${HUGGINGFACE_CKPT_PATH}",dtype="bfloat16",parallelize=True \
     --task mbpp \

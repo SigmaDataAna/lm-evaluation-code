@@ -1,0 +1,78 @@
+protocolVersion: 2
+name: llama_3B_gpt4o_code_data_evaluation_dclm_0328_mp_copy_t5_1
+type: job
+jobRetryCount: 0
+prerequisites:
+  - type: dockerimage
+    uri: >-
+      bench.azurecr.io/superbench:sigma-megatron-with-msccl-large-scale-opt-nccl-2.23
+    name: docker_image0
+taskRoles:
+  worker:
+    instances: 1
+    completion:
+      minFailedInstances: 1
+    taskRetryCount: 0
+    dockerImage: docker_image0
+    extraContainerOptions:
+      shmMB: 16384
+      infiniband: true
+    resourcePerInstance:
+      gpu: 8
+      cpu: 88
+      memoryMB: 819200
+    commands:
+      - echo "Prepare NCCL env"
+      - mkdir -p /opt/microsoft
+      - >-
+        wget
+        https://raw.githubusercontent.com/Azure/azhpc-images/master/topology/ndv4-topo.xml
+        -O /opt/microsoft/ndv4-topo.xml
+      - export NCCL_IB_PCI_RELAXED_ORDERING=1
+      - export NCCL_SOCKET_IFNAME=eth0
+      - export CUDA_DEVICE_ORDER=PCI_BUS_ID
+      - export NCCL_NET_GDR_LEVEL=5
+      - export NCCL_TOPO_FILE=/opt/microsoft/ndv4-topo.xml
+      - export NCCL_DEBUG=WARN
+      - nvidia-smi
+      - echo "Download code"
+      - cd lm-evaluation-code
+      - echo "Prepare other envs"
+      - pip install -e .
+      - 'echo "[Used Envs]"'
+      - pip list
+      - export AZUREML_NODE_COUNT=$PAI_TASK_ROLE_TASK_COUNT_worker
+      - export GPUS_PER_NODE=8
+      - export MASTER_ADDR=$PAI_HOST_IP_worker_0
+      - export MASTER_PORT=$PAI_PORT_LIST_worker_0_http
+      - export NUM_NODES=$PAI_TASK_ROLE_TASK_COUNT_worker
+      - export NODE_RANK=$PAI_CURRENT_TASK_ROLE_CURRENT_TASK_INDEX
+      - 'export LD_LIBRARY_PATH=/opt/hpcx/ucx/lib:$LD_LIBRARY_PATH'
+      - echo "Start inference..."
+      - chmod +755 ./test_scripts/test_sigma_lite_local.sh
+      - bash ./test_scripts/test_sigma_lite_local.sh
+      - echo "End inference..."
+defaults:
+  virtualCluster: default
+extras:
+  com.microsoft.pai.runtimeplugin:
+    - plugin: ssh
+      parameters:
+        jobssh: true
+        userssh:
+          type: custom
+          value: ''
+    - plugin: teamwise_storage
+      parameters:
+        storageConfigNames:
+          - blob-shuailu1-tianyu
+          - blob-shuailu1-tianyu-out
+  hivedScheduler:
+    taskRoles:
+      worker:
+        skuNum: 8
+        skuType: A100
+  jobStatusChangeNotification:
+    running: true
+    succeeded: true
+    failed: true

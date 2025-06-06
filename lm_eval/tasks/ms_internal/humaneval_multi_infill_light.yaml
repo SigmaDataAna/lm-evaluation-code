@@ -30,5 +30,3 @@ filter_list:
         filter_fn: !function utils.build_predictions_ms
 metadata:
   version: 1.0
-
-# d = load_dataset(path='json',name='default', data_files='/home/pretraining/lm-evaluation-code/ms_internal/data/HumanEval-MultiLineInfillingLight.jsonl')

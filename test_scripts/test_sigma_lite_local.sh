@@ -1,11 +1,12 @@
 
 export HF_ALLOW_CODE_EVAL=1
+mkdir -p "${HUGGINGFACE_CKPT_PATH}/eval"
 
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 lm_eval \
     --model hf \
     --model_args pretrained="${HUGGINGFACE_CKPT_PATH}",dtype="bfloat16",parallelize=True \
     --task humaneval \
-    --batch_size 256 \
+    --batch_size 64 \
     --confirm_run_unsafe_code \
     --trust_remote_code \
     -o "${HUGGINGFACE_CKPT_PATH}/eval/eval_mscode_singleline.json" \
@@ -15,7 +16,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 lm_eval \
     --model hf \
     --model_args pretrained="${HUGGINGFACE_CKPT_PATH}",dtype="bfloat16",parallelize=True \
     --task mbpp \
-    --batch_size 256 \
+    --batch_size 64 \
     --confirm_run_unsafe_code \
     --trust_remote_code \
     -o "${HUGGINGFACE_CKPT_PATH}/eval/eval_mscode_multiline.json" \

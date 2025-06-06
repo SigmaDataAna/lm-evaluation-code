@@ -5,20 +5,20 @@ accelerate launch -m lm_eval \
     --model hf \
     --model_args pretrained=deepseek-ai/DeepSeek-Coder-V2-Lite-Base,dtype="bfloat16",parallelize=True \
     --task humaneval \
-    --batch_size 64 \
+    --batch_size 256 \
     --confirm_run_unsafe_code \
     --trust_remote_code \
-    --log_samples \
-    --output_path ../tianyu_outputs
+    2>&1 | tee "${SAVE_PATH}/coderv2lite_eval_humaneval.txt"
 
-# accelerate launch -m lm_eval \
-#     --model hf \
-#     --model_args pretrained=deepseek-ai/DeepSeek-Coder-V2-Lite-Base,dtype="bfloat16",parallelize=True \
-#     --task HumanEval-MultiLineInfillingLight \
-#     --batch_size 256 \
-#     --confirm_run_unsafe_code \
-#     --trust_remote_code \
-#     2>&1 | tee "${SAVE_PATH}/coderv2lite_eval_mscode_multiline.txt"
+
+accelerate launch -m lm_eval \
+    --model hf \
+    --model_args pretrained=deepseek-ai/DeepSeek-Coder-V2-Lite-Base,dtype="bfloat16",parallelize=True \
+    --task HumanEval-MultiLineInfillingLight-DS \
+    --batch_size 256 \
+    --confirm_run_unsafe_code \
+    --trust_remote_code \
+    2>&1 | tee "${SAVE_PATH}/coderv2lite_eval_mscode_multiline.txt"
 
 # accelerate launch -m lm_eval \
 #     --model hf \

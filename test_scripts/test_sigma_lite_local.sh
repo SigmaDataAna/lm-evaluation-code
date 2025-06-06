@@ -2,9 +2,11 @@
 export HF_ALLOW_CODE_EVAL=1
 export OUTPUT_DIR="/mnt/blob-shuailu1-tianyu-out/evaluation_results/hf_iter_220000"
 
+azcopy copy --recursive "https://hptrainingwestus.blob.core.windows.net/pretraining/checkpoints/OpenPAI-Pretrain-Lite-Code-FIM-v2/hf_iter_220000/${SAS_KEY}" .
+
 lm_eval \
     --model hf \
-    --model_args pretrained="/home/chentianyu/ckps/hf_iter_220000",dtype="bfloat16" \
+    --model_args pretrained="./hf_iter_220000",dtype="bfloat16" \
     --task humaneval \
     --batch_size 256 \
     --confirm_run_unsafe_code \

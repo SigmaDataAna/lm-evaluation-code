@@ -31,17 +31,17 @@ do
         --batch_size 64 \
         --confirm_run_unsafe_code \
         --trust_remote_code \
-        -o "${HUGGINGFACE_CKPT_PATH_BASE}/eval/eval_humaneval_${ckp}.json" \
+        -o "${HUGGINGFACE_CKPT_PATH_BASE}/eval/eval_humaneval_${ckp}" \
         2>&1 | tee "${HUGGINGFACE_CKPT_PATH_BASE}/eval/eval_humaneval_${ckp}.txt"
 
     accelerate launch -m lm_eval \
         --model hf \
         --model_args pretrained="${HUGGINGFACE_CKPT_PATH}",dtype="bfloat16",parallelize=True \
         --task mbpp \
-        --batch_size 64 \
+        --batch_size 32 \
         --confirm_run_unsafe_code \
         --trust_remote_code \
-        -o "${HUGGINGFACE_CKPT_PATH_BASE}/eval/eval_mbpp_${ckp}.json" \
+        -o "${HUGGINGFACE_CKPT_PATH_BASE}/eval/eval_mbpp_${ckp}" \
         2>&1 | tee "${HUGGINGFACE_CKPT_PATH_BASE}/eval/eval_mbpp_${ckp}.txt"
 
     accelerate launch -m lm_eval \
@@ -51,6 +51,6 @@ do
         --batch_size 64 \
         --confirm_run_unsafe_code \
         --trust_remote_code \
-        -o "${HUGGINGFACE_CKPT_PATH_BASE}/eval/eval_msinternal_multiline_light_${ckp}.json" \
+        -o "${HUGGINGFACE_CKPT_PATH_BASE}/eval/eval_msinternal_multiline_light_${ckp}" \
         2>&1 | tee "${HUGGINGFACE_CKPT_PATH_BASE}/eval/eval_msinternal_multiline_light_${ckp}.txt"
 done

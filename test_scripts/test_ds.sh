@@ -6,7 +6,7 @@ accelerate launch -m lm_eval \
     --model hf \
     --model_args pretrained=deepseek-ai/DeepSeek-Coder-V2-Lite-Base,dtype="bfloat16",parallelize=True \
     --task mbpp \
-    --batch_size 32 \
+    --batch_size 16 \
     --confirm_run_unsafe_code \
     --trust_remote_code \
     --log_samples \

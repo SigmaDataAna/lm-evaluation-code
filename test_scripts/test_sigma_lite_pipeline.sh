@@ -22,7 +22,7 @@ for ckp in "${ckps[@]}"
 do
     HUGGINGFACE_CKPT_PATH="${HUGGINGFACE_CKPT_PATH_BASE}/${ckp}"
     echo "Evaluating checkpoint: ${HUGGINGFACE_CKPT_PATH}"
-    cp tokenization_sigma.py "${HUGGINGFACE_CKPT_PATH}/tokenization_sigma.py"
+    cp test_scripts/tokenization_sigma.py "${HUGGINGFACE_CKPT_PATH}/tokenization_sigma.py"
 
     accelerate launch -m lm_eval \
         --model hf \

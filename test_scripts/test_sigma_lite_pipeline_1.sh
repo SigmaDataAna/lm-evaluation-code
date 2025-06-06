@@ -5,7 +5,7 @@ mkdir -p "${HUGGINGFACE_CKPT_PATH_BASE}/eval"
 ckps=()
 current=222950
 incr_next=350
-count=6
+count=1
 
 for ((i=0; i<count; i++))
 do
